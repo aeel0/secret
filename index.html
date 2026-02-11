@@ -1,125 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Will You Be My Valentine? 💝</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-      color: #fff;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .container {
-      max-width: 600px;
-      padding: 20px;
-      position: relative;
-      z-index: 10;
-    }
-
-    h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1.5rem;
-      text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    p {
-      font-size: 1.6rem;
-      margin: 1.5rem 0;
-      line-height: 1.4;
-    }
-
-    .buttons {
-      margin: 2rem 0;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    button {
-      font-size: 1.4rem;
-      padding: 14px 40px;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-
-    #yesBtn {
-      background: #ff4757;
-      color: white;
-    }
-
-    #yesBtn:hover {
-      background: #ff6b81;
-      transform: scale(1.1);
-    }
-
-    #noBtn {
-      background: #57606f;
-      color: white;
-      position: relative;
-    }
-
-    #noBtn:hover {
-      background: #747d8c;
-    }
-
-    .hearts {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 5;
-    }
-
-    .heart {
-      position: absolute;
-      font-size: 2rem;
-      animation: float 6s linear infinite;
-      opacity: 0.9;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(100vh) rotate(0deg); }
-      100% { transform: translateY(-150px) rotate(720deg); }
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #ff9a9e; }
-      to   { text-shadow: 0 0 30px #ff4757, 0 0 50px #ff6b81; }
-    }
-
-    .hidden { display: none; }
-    .reveal { animation: fadeIn 1.5s ease; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.8); }
-      to   { opacity: 1; transform: scale(1); }
-    }
-  </style>
-</head>
 <body>
+
+  <!-- Hidden YouTube audio embed (your song: Raindance by Dave ft. Tems) -->
+  <iframe 
+    id="bgMusic" 
+    width="1" 
+    height="1" 
+    src="https://www.youtube.com/embed/SOJpE1KMUbo?autoplay=1&loop=1&playlist=SOJpE1KMUbo&mute=0&controls=0&modestbranding=1&showinfo=0&rel=0" 
+    frameborder="0" 
+    allow="autoplay; encrypted-media" 
+    allowfullscreen 
+    style="position: absolute; opacity: 0; pointer-events: none;">
+  </iframe>
 
   <div class="hearts" id="hearts"></div>
 
@@ -135,69 +26,23 @@
 
   <div class="container hidden" id="yesPage">
     <h1 class="reveal">Yayyyy! 🎉💝</h1>
-    <p class="reveal" style="font-size: 2rem;">Thank you for saying yes <3</p>
-    <p class="reveal">I hope it's better then then my previous valentine proposal.</p>
-    <p class="reveal">Can't wait for Feb 14th with you! 😘</p>
+    <p class="reveal" style="font-size: 2rem;">You just made me the happiest person ever!</p>
+    <p class="reveal">I promise lots of cuddles, laughs, and love forever 💗</p>
+    <p class="reveal">Can't wait for Feb 14th with you! 😘 (with our song playing in the bg 🌧️❤️)</p>
   </div>
 
+  <!-- Keep your existing script here -->
   <script>
-    const noBtn = document.getElementById('noBtn');
-    const yesBtn = document.getElementById('yesBtn');
-    const question = document.getElementById('question');
-    const mainContent = document.getElementById('mainContent');
-    const yesPage = document.getElementById('yesPage');
-    const heartsContainer = document.getElementById('hearts');
+    // ... (your previous JS for hearts, noBtn fun, yesBtn reveal remains the same)
 
-    // Floating hearts
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.innerHTML = ['❤️','💖','💕','💗','💓'][Math.floor(Math.random()*5)];
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-      heart.style.fontSize = (Math.random() * 1.5 + 1.5) + 'rem';
-      heartsContainer.appendChild(heart);
-
-      setTimeout(() => heart.remove(), 7000);
-    }
-
-    setInterval(createHeart, 400);
-
-    // No button fun
-    const noPhrases = [
-      "Are you sure? 😭",
-      "Please reconsider... 🥺",
-      "No is not an option! 😤💕",
-      "Try again cutie~ 😉",
-      "You can't resist me forever! 😏",
-      "Click Yes or I'll cry... 😢"
-    ];
-    let noCount = 0;
-
-    noBtn.addEventListener('mouseover', () => {
-      noBtn.style.position = 'absolute';
-      noBtn.style.left = (Math.random() * 80 + 10) + '%';
-      noBtn.style.top = (Math.random() * 80 + 10) + '%';
-      
-      noCount++;
-      if (noCount < noPhrases.length) {
-        question.textContent = noPhrases[noCount];
-      } else {
-        question.textContent = "Okay fine... but Yes is still better! 😘";
-      }
-    });
-
-    // Yes button
-    yesBtn.addEventListener('click', () => {
-      mainContent.classList.add('hidden');
-      yesPage.classList.remove('hidden');
-      
-      // Extra hearts explosion
-      for (let i = 0; i < 50; i++) {
-        setTimeout(createHeart, i * 80);
-      }
+    // Optional: Lower volume after load (YouTube iframe API way, but simple timeout works)
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const iframe = document.getElementById('bgMusic');
+        // Can't directly control volume via JS easily without full API, but you can mute/unmute if needed
+        // For now, it's at normal volume – add ?volume=30 to src if you want lower (not standard, test it)
+      }, 2000);
     });
   </script>
 
 </body>
-</html>
